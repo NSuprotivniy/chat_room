@@ -1,17 +1,50 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>ChatRoom</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>ChatRoom</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+  <div class="header">
+    <div class="row">
+      <div class="navbar navbar-inverse">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="res-menu">
+              <span class="sr-only">Открыть меню</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+          <div class="collapse navbar-collapse" id="res-menu">
+            <ul class="nav navbar-nav">
+              <li>
+                <% if signed_in? %>
+                  <%= link_to "Профиль", current_user %>
+                <% else %>
+                  <%= link_to "Войти",   new_user_session_path %>
+                <% end %>
 
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+              </li>
+              <li><%= link_to "Чат",     root_path    %></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<%= yield %>
+  <div class="container">
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <%= yield %>
+  </div>
 
-</body>
+  <div class="footer">
+  </div>
+
+  </body>
 </html>
